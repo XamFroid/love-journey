@@ -236,7 +236,7 @@ body {
 /* Título Principal - Playfair Display grande */
 .hero-title {
     font-family: var(--font-fancy);
-    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
     font-weight: 700;
     color: var(--white-warm);
     line-height: 1.15;
