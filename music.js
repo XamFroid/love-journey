@@ -4,12 +4,9 @@
 
 class MusicController {
     constructor() {
-        this.btn = document.getElementById('music-btn');
-        this.ctaBtn = document.getElementById('btn-start');
         this.player = null;
         this.isPlaying = false;
         this.isReady = false;
-        this.pendingPlay = false;
 
         this.init();
     }
@@ -24,8 +21,6 @@ class MusicController {
 
         // Callback global requerido por YouTube IFrame API
         window.onYouTubeIframeAPIReady = () => this.onAPIReady();
-
-        this.setupEvents();
     }
 
     onAPIReady() {
@@ -47,10 +42,8 @@ class MusicController {
             events: {
                 onReady: () => {
                     this.isReady = true;
-                    // Reproducir inmediatamente a volumen cómodo (60)
-                    this.player.setVolume(60);
-                    this.player.playVideo();
-                    this.isPlaying = true;
+                    this.player.setVolume(0);
+                    this.play();
                 },
                 onError: (e) => {
                     console.warn('YouTube player error, sin música:', e);
@@ -59,34 +52,20 @@ class MusicController {
         });
     }
 
-    setupEvents() {
-        if (this.btn) this.btn.addEventListener('click', () => this.toggle());
-        if (this.ctaBtn) this.ctaBtn.addEventListener('click', () => {
-            if (!this.isPlaying) this.play();
-        });
-    }
-
-    toggle() {
-        this.isPlaying ? this.pause() : this.play();
-    }
-
     play() {
-        if (!this.isReady) {
-            this.pendingPlay = true;
-            return;
-        }
-        if (this.player && typeof this.player.playVideo === 'function') {
-            this.player.setVolume(60);
-            this.player.playVideo();
-            this.isPlaying = true;
-        }
+        if (!this.isReady) return;
+        this.player.playVideo();
+        this.isPlaying = true;
+        this.fadeIn();
     }
 
-    pause() {
-        if (this.player && typeof this.player.pauseVideo === 'function') {
-            this.player.pauseVideo();
-            this.isPlaying = false;
-        }
+    fadeIn() {
+        let vol = 0;
+        const interval = setInterval(() => {
+            vol = Math.min(vol + 4, 40);
+            this.player.setVolume(vol);
+            if (vol >= 40) clearInterval(interval);
+        }, 100);
     }
 }
 
