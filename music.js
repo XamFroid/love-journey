@@ -1,62 +1,70 @@
 /* ==========================================================================
-   MUSIC.JS: CONTROLADOR DE AUDIO NATIVO HTML5 (Música Romántica de Fondo)
+   MUSIC.JS: CONTROLADOR DE MÚSICA - Iris (Goo Goo Dolls) vía YouTube
    ========================================================================== */
 
 class MusicController {
     constructor() {
         this.btn = document.getElementById('music-btn');
         this.ctaBtn = document.getElementById('btn-start');
-        this.audio = null;
+        this.player = null;
         this.isPlaying = false;
-
-        // Fuentes de audio directas (sin YouTube, sin restricciones locales)
-        // Lista de URLs de respaldo - se prueba de primera a última
-        this.sources = [
-            'https://assets.mixkit.co/music/preview/mixkit-love-in-the-air-148.mp3',
-            'https://assets.mixkit.co/music/preview/mixkit-classical-romantic-guitar-121.mp3',
-            'https://assets.mixkit.co/music/preview/mixkit-piano-reflections-22.mp3'
-        ];
+        this.isReady = false;
+        this.pendingPlay = false;
 
         this.init();
     }
 
     init() {
-        this.audio = new Audio();
-        this.audio.loop = true;
-        this.audio.volume = 0;
+        // Cargar la API de YouTube de forma dinámica
+        if (!window.YT) {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(tag);
+        }
 
-        // Intentar cargar las fuentes en orden hasta que una funcione
-        this.loadAudio(0);
+        // Callback global requerido por YouTube IFrame API
+        window.onYouTubeIframeAPIReady = () => this.onAPIReady();
+
         this.setupEvents();
     }
 
-    loadAudio(index) {
-        if (index >= this.sources.length) {
-            console.warn('No se pudo cargar ninguna fuente de audio.');
-            return;
-        }
+    onAPIReady() {
+        const container = document.createElement('div');
+        container.id = 'yt-player-container';
+        container.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;';
+        document.body.appendChild(container);
 
-        this.audio.src = this.sources[index];
-        this.audio.load();
-
-        // Si hay error, intentar la siguiente fuente
-        this.audio.onerror = () => {
-            console.warn(`Fuente ${index} falló, probando siguiente...`);
-            this.loadAudio(index + 1);
-        };
+        this.player = new YT.Player('yt-player-container', {
+            videoId: 'NdYWuo9OFAw',   // Iris - Goo Goo Dolls
+            playerVars: {
+                autoplay: 0,
+                controls: 0,
+                loop: 1,
+                playlist: 'NdYWuo9OFAw',
+                enablejsapi: 1,
+                origin: window.location.origin
+            },
+            events: {
+                onReady: () => {
+                    this.isReady = true;
+                    this.player.setVolume(0);
+                    if (this.pendingPlay) {
+                        this.pendingPlay = false;
+                        this.play();
+                    }
+                },
+                onError: (e) => {
+                    console.warn('YouTube player error, sin música:', e);
+                }
+            }
+        });
     }
 
     setupEvents() {
-        if (!this.btn) return;
-
-        this.btn.addEventListener('click', () => this.toggle());
-
-        // Iniciar música con el CTA principal
-        if (this.ctaBtn) {
-            this.ctaBtn.addEventListener('click', () => {
-                if (!this.isPlaying) this.play();
-            });
-        }
+        if (this.btn) this.btn.addEventListener('click', () => this.toggle());
+        if (this.ctaBtn) this.ctaBtn.addEventListener('click', () => {
+            if (!this.isPlaying) this.play();
+        });
     }
 
     toggle() {
@@ -64,50 +72,43 @@ class MusicController {
     }
 
     play() {
-        if (!this.audio) return;
-
-        const playPromise = this.audio.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                this.isPlaying = true;
-                this.btn.classList.add('playing');
-                this.fadeIn();
-            }).catch(err => {
-                console.warn('Reproducción bloqueada por el navegador (requiere interacción del usuario):', err);
-                // El botón de música ya actúa como interacción - reintentar
-            });
+        if (!this.isReady) {
+            this.pendingPlay = true;
+            return;
         }
+        this.player.playVideo();
+        this.isPlaying = true;
+        this.btn.classList.add('playing');
+        this.fadeIn();
     }
 
     pause() {
         this.fadeOut(() => {
-            this.audio.pause();
+            this.player.pauseVideo();
             this.isPlaying = false;
             this.btn.classList.remove('playing');
         });
     }
 
     fadeIn() {
-        this.audio.volume = 0;
         let vol = 0;
         const interval = setInterval(() => {
-            vol = Math.min(vol + 0.04, 0.45);
-            this.audio.volume = vol;
-            if (vol >= 0.45) clearInterval(interval);
-        }, 80);
+            vol = Math.min(vol + 4, 40);
+            this.player.setVolume(vol);
+            if (vol >= 40) clearInterval(interval);
+        }, 100);
     }
 
     fadeOut(callback) {
-        let vol = this.audio.volume;
+        let vol = this.player.getVolume();
         const interval = setInterval(() => {
-            vol = Math.max(vol - 0.04, 0);
-            this.audio.volume = vol;
+            vol = Math.max(vol - 5, 0);
+            this.player.setVolume(vol);
             if (vol <= 0) {
                 clearInterval(interval);
                 if (callback) callback();
             }
-        }, 50);
+        }, 60);
     }
 }
 
