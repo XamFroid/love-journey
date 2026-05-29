@@ -1426,3 +1426,139 @@ section {
         font-size: 0.75rem;
     }
 }
+
+/* ==========================================================================
+   IMÁGENES DECORATIVAS FLOTANTES
+   ========================================================================== */
+
+/* Base — todas las deco images */
+.deco {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 6;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
+    animation: decoFloat 7s ease-in-out infinite;
+}
+
+@keyframes decoFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33%       { transform: translateY(-14px) rotate(2deg); }
+    66%       { transform: translateY(-7px) rotate(-1.5deg); }
+}
+
+/* ── HERO ── */
+.hero-section { position: relative; overflow: visible; }
+
+.deco-pixel-heart {
+    width: 90px;
+    top: 12%;
+    right: 6%;
+    animation-delay: 0s;
+    animation-duration: 5s;
+}
+
+.deco-fnf {
+    width: 130px;
+    bottom: 14%;
+    left: 3%;
+    animation-delay: 1.2s;
+    animation-duration: 6s;
+}
+
+/* ── TIMELINE ── */
+.timeline-section { position: relative; overflow: hidden; }
+
+.deco-snoopy-hug {
+    width: 110px;
+    bottom: 4%;
+    left: 2%;
+    animation-delay: 0.5s;
+    animation-duration: 8s;
+}
+
+.deco-anime-couple {
+    width: 180px;
+    top: 18%;
+    right: 1%;
+    animation-delay: 2s;
+    animation-duration: 7s;
+}
+
+/* ── GALERÍA ── */
+.gallery-section { position: relative; overflow: hidden; }
+
+.deco-whatababe {
+    width: 120px;
+    bottom: 3%;
+    right: 3%;
+    animation-delay: 1.8s;
+    animation-duration: 6.5s;
+}
+
+/* ── CARTAS ── */
+.letters-section { position: relative; overflow: hidden; }
+
+.deco-snoopy-draw {
+    width: 120px;
+    bottom: 5%;
+    right: 3%;
+    animation-delay: 0.8s;
+    animation-duration: 9s;
+}
+
+.deco-pixel-cat {
+    width: 85px;
+    top: 10%;
+    left: 4%;
+    animation-delay: 3s;
+    animation-duration: 6s;
+}
+
+/* ── POR QUÉ TE AMO ── */
+.reasons-section { position: relative; overflow: hidden; }
+
+.deco-care-bears {
+    width: 160px;
+    bottom: 2%;
+    right: 2%;
+    animation-delay: 1.5s;
+    animation-duration: 8s;
+}
+
+/* ── PLAYLIST ── */
+.playlist-section { position: relative; overflow: hidden; }
+
+.deco-mcr {
+    width: 140px;
+    top: 8%;
+    left: 2%;
+    animation-delay: 2.5s;
+    animation-duration: 7.5s;
+}
+
+/* ── FOOTER ── */
+.cinema-footer { position: relative; overflow: hidden; }
+
+.deco-heart-hands {
+    width: 130px;
+    bottom: 8%;
+    right: 4%;
+    animation-delay: 1s;
+    animation-duration: 6s;
+}
+
+/* ── RESPONSIVE: ocultar las más grandes en móvil ── */
+@media (max-width: 768px) {
+    .deco-anime-couple { display: none; }
+    .deco-mcr          { display: none; }
+
+    .deco-pixel-heart  { width: 60px; right: 4%; }
+    .deco-fnf          { width: 85px; left: 2%; }
+    .deco-care-bears   { width: 100px; }
+    .deco-snoopy-hug   { width: 75px; }
+    .deco-snoopy-draw  { width: 80px; }
+    .deco-whatababe    { width: 85px; }
+    .deco-heart-hands  { width: 85px; }
+    .deco-pixel-cat    { width: 60px; }
+}
