@@ -254,7 +254,7 @@ body {
 }
 
 .hero-subtitle {
-    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     color: var(--white-mute);
     font-weight: 300;
     line-height: 1.8;
@@ -262,6 +262,29 @@ body {
     opacity: 0;
     animation: fadeSlideUp 1.2s ease forwards 0.8s;
 }
+
+.hero-lead {
+    font-family: var(--font-fancy);
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 700;
+    color: var(--white-warm);
+    letter-spacing: 0.5px;
+}
+
+.hero-body {
+    font-size: clamp(0.88rem, 2vw, 1rem);
+    color: rgba(255, 225, 232, 0.6);
+    font-weight: 300;
+    line-height: 1.9;
+    max-width: 500px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeSlideUp 1.2s ease forwards 0.9s;
+}
+
+.br-desktop { display: none; }
+@media (min-width: 640px) { .br-desktop { display: inline; } }
+
 
 @keyframes fadeSlideUp {
     from { opacity: 0; transform: translateY(24px); }
