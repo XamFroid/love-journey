@@ -1314,6 +1314,13 @@ section {
         padding: 5rem 1.5rem;
     }
     
+    .hero-subtitle {
+        text-align: center;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
     .section-header {
         margin-bottom: 3.5rem;
     }
