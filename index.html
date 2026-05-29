@@ -14,7 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Outfit:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Estilos Principales -->
     <link rel="stylesheet" href="index.css">
@@ -37,39 +37,48 @@
     <!-- 1. HERO PRINCIPAL -->
     <header class="hero-section" id="hero">
         <div class="hero-glow"></div>
+        <div class="hero-glow hero-glow-2"></div>
         <div class="hero-content">
-            <h1 class="hero-title animate-fade">Tess & Max</h1>
-            <p class="hero-subtitle animate-fade-delay">Un viaje por el universo que creamos juntos</p>
+            <!-- Badge MAX & TESS -->
+            <div class="hero-badge animate-fade">
+                <span class="badge-heart">♥</span>
+                <span>MAX &amp; TESS</span>
+            </div>
+
+            <h1 class="hero-title animate-fade">
+                Nuestra historia<br>
+                <em>apenas comienza</em>
+            </h1>
+            <p class="hero-subtitle animate-fade-delay">Para mi Tassie, en cada mesario del 30.<br>Un rincón hecho de luz, recuerdos y todo lo que mi corazón no cabe en palabras.</p>
             
-            <!-- Contador de Aniversario Glassmorphism -->
-            <div class="counter-container glass-card">
-                <div class="counter-header">Llevamos amándonos</div>
+            <!-- Contador Limpio -->
+            <div class="counter-container">
                 <div class="counter-grid">
                     <div class="counter-item">
                         <span class="counter-val" id="days">00</span>
-                        <span class="counter-lbl">Días</span>
+                        <span class="counter-lbl">DÍAS</span>
                     </div>
+                    <div class="counter-sep">:</div>
                     <div class="counter-item">
                         <span class="counter-val" id="hours">00</span>
-                        <span class="counter-lbl">Horas</span>
+                        <span class="counter-lbl">HORAS</span>
                     </div>
+                    <div class="counter-sep">:</div>
                     <div class="counter-item">
                         <span class="counter-val" id="minutes">00</span>
-                        <span class="counter-lbl">Min</span>
+                        <span class="counter-lbl">MIN</span>
                     </div>
+                    <div class="counter-sep">:</div>
                     <div class="counter-item">
                         <span class="counter-val" id="seconds">00</span>
-                        <span class="counter-lbl">Seg</span>
+                        <span class="counter-lbl">SEG</span>
                     </div>
                 </div>
-                <div class="counter-footer">y latiendo al mismo ritmo ❤️</div>
+                <div class="counter-footer">Juntos desde el 30 de abril, 8:00 p.m.</div>
             </div>
             
             <a href="#timeline-sec" class="btn-primary" id="btn-start">
-                <span>Comenzar nuestra historia</span>
-                <svg class="arrow-down" viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M19 12l-7 7-7-7"/>
-                </svg>
+                <span>♥ Comenzar nuestra historia</span>
             </a>
         </div>
     </header>

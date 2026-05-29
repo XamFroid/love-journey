@@ -12,31 +12,31 @@
 }
 
 :root {
-    /* Paleta de Colores Sunset & Cosmic Lavender */
-    --bg-dark: #0a0612;
-    --bg-dusk: #170d24;
-    --bg-sunset: #2d122e;
+    /* Paleta Borgoña Profunda - Inspirada en Lovable */
+    --bg-dark: #080208;
+    --bg-dusk: #0f0310;
+    --bg-sunset: #1e0710;
     
-    --primary: #ff758c;
-    --primary-glow: rgba(255, 117, 140, 0.4);
+    --primary: #e8607a;
+    --primary-glow: rgba(232, 96, 122, 0.45);
     
-    --secondary: #e2b4fd;
-    --secondary-glow: rgba(226, 180, 253, 0.3);
+    --secondary: #f0a0b8;
+    --secondary-glow: rgba(240, 160, 184, 0.3);
     
     --gold: #ffd700;
     --gold-glow: rgba(255, 215, 0, 0.4);
     
     --white-warm: #fff5f7;
-    --white-mute: rgba(255, 245, 247, 0.6);
+    --white-mute: rgba(255, 235, 240, 0.65);
     
-    /* Variables de Estilo */
-    --font-fancy: 'Cinzel Decorative', Georgia, serif;
+    /* Tipografía */
+    --font-fancy: 'Playfair Display', Georgia, serif;
     --font-sans: 'Outfit', sans-serif;
     --font-write: 'Caveat', cursive;
     
-    --glass-bg: rgba(25, 15, 38, 0.5);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(18, 4, 12, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-shadow: rgba(0, 0, 0, 0.5);
     
     --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fast: all 0.25s ease;
@@ -59,7 +59,11 @@ body {
     height: 100vh;
     z-index: -2;
     pointer-events: none;
-    background: radial-gradient(circle at 50% 50%, var(--bg-sunset) 0%, var(--bg-dark) 100%);
+    background:
+        radial-gradient(ellipse at 50% 40%, #3d0a1e 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, #1a0510 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 10%, #25070f 0%, transparent 50%),
+        #080208;
 }
 
 /* 2. COMPONENTES GLOBALES (GLASSMORPHISM) */
@@ -173,113 +177,182 @@ body {
     overflow: hidden;
 }
 
+/* Glow central cálido */
 .hero-glow {
     position: absolute;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(180, 30, 60, 0.35) 0%, transparent 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
-    animation: pulseGlow 10s ease-in-out infinite alternate;
+    z-index: 0;
+    animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+/* Segundo glow más pequeño y brillante */
+.hero-glow-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(232, 96, 122, 0.25) 0%, transparent 70%);
+    animation-delay: -4s;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 720px;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.6rem;
 }
 
+/* Badge ♥ MAX & TESS */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255, 200, 210, 0.9);
+    opacity: 0;
+    animation: fadeSlideUp 1s ease forwards 0.3s;
+}
+
+.badge-heart {
+    color: var(--primary);
+    font-size: 0.9rem;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+/* Título Principal - Playfair Display grande */
 .hero-title {
     font-family: var(--font-fancy);
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(3.2rem, 9vw, 7rem);
     font-weight: 700;
     color: var(--white-warm);
-    text-shadow: 0 0 30px rgba(255, 117, 140, 0.4), 0 0 60px rgba(255, 255, 255, 0.2);
-    letter-spacing: 4px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-shadow:
+        0 0 40px rgba(232, 96, 122, 0.3),
+        0 0 80px rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    animation: fadeSlideUp 1.2s ease forwards 0.5s;
+}
+
+.hero-title em {
+    font-style: italic;
+    color: rgba(255, 200, 215, 0.95);
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    color: var(--secondary);
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-/* CONTADOR DE TIEMPO LATIENTE */
-.counter-container {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 1rem;
-    animation: breatheCard 5s ease-in-out infinite;
-}
-
-.counter-header {
-    font-size: 0.9rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
     color: var(--white-mute);
-    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeSlideUp 1.2s ease forwards 0.8s;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* CONTADOR LIMPIO (estilo Lovable) */
+.counter-container {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem 2.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    opacity: 0;
+    animation: fadeSlideUp 1.2s ease forwards 1s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .counter-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
 }
 
 .counter-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 64px;
+}
+
+.counter-sep {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: rgba(255, 200, 210, 0.4);
+    line-height: 1;
+    padding-bottom: 18px;
+    align-self: flex-start;
+    padding-top: 4px;
 }
 
 .counter-val {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 700;
     font-family: var(--font-sans);
     color: var(--white-warm);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(232, 96, 122, 0.3);
 }
 
 .counter-lbl {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--primary);
+    letter-spacing: 2.5px;
+    color: rgba(255, 180, 195, 0.6);
     font-weight: 600;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
 .counter-footer {
-    font-size: 1rem;
-    color: var(--white-mute);
-    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(255, 200, 210, 0.5);
+    letter-spacing: 0.5px;
+    margin-top: 0.3rem;
 }
 
 /* BOTONES */
 .btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%);
+    gap: 10px;
+    background: linear-gradient(135deg, #e8607a 0%, #d04060 50%, #c03050 100%);
     border: none;
     outline: none;
-    padding: 18px 36px;
+    padding: 16px 36px;
     border-radius: 50px;
     color: var(--white-warm);
     font-weight: 600;
+    font-size: 1rem;
     text-decoration: none;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 30px rgba(255, 117, 140, 0.4), inset 0 2px 4px rgba(255,255,255,0.3);
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 30px rgba(200, 50, 80, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
     cursor: pointer;
     transition: var(--transition-smooth);
-    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeSlideUp 1.2s ease forwards 1.2s;
     position: relative;
     overflow: hidden;
 }
@@ -291,15 +364,15 @@ body {
     left: 50%;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.5s ease-out;
     pointer-events: none;
 }
 
 .btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255, 117, 140, 0.6), 0 0 20px rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(200, 50, 80, 0.6), 0 0 20px rgba(255, 100, 130, 0.3);
 }
 
 .btn-primary:hover::after {
@@ -316,13 +389,8 @@ body {
 }
 
 @keyframes pulseGlow {
-    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
-    100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-}
-
-@keyframes breatheCard {
-    0%, 100% { box-shadow: 0 15px 35px var(--glass-shadow); }
-    50% { box-shadow: 0 15px 40px rgba(255, 117, 140, 0.15); }
+    0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 }
 
 /* 5. DISEÑO DE SECCIONES (HEADERS Y GENERAL) */
