@@ -47,8 +47,10 @@ class MusicController {
             events: {
                 onReady: () => {
                     this.isReady = true;
-                    this.player.setVolume(0);
-                    this.play();
+                    // Reproducir inmediatamente a volumen cómodo (60)
+                    this.player.setVolume(60);
+                    this.player.playVideo();
+                    this.isPlaying = true;
                 },
                 onError: (e) => {
                     console.warn('YouTube player error, sin música:', e);
@@ -62,21 +64,6 @@ class MusicController {
         if (this.ctaBtn) this.ctaBtn.addEventListener('click', () => {
             if (!this.isPlaying) this.play();
         });
-
-        // Autoplay fallback: start music on first user interaction anywhere on the document
-        const startAutoplay = () => {
-            if (!this.isPlaying) {
-                this.play();
-            }
-            // Clean up event listeners
-            ['click', 'touchstart', 'scroll', 'keydown'].forEach(event => {
-                document.removeEventListener(event, startAutoplay);
-            });
-        };
-
-        ['click', 'touchstart', 'scroll', 'keydown'].forEach(event => {
-            document.addEventListener(event, startAutoplay, { passive: true });
-        });
     }
 
     toggle() {
@@ -88,43 +75,18 @@ class MusicController {
             this.pendingPlay = true;
             return;
         }
-        this.player.playVideo();
-        this.isPlaying = true;
-        if (this.btn) this.btn.classList.add('playing');
-        this.fadeIn();
+        if (this.player && typeof this.player.playVideo === 'function') {
+            this.player.setVolume(60);
+            this.player.playVideo();
+            this.isPlaying = true;
+        }
     }
 
     pause() {
-        this.fadeOut(() => {
+        if (this.player && typeof this.player.pauseVideo === 'function') {
             this.player.pauseVideo();
             this.isPlaying = false;
-            if (this.btn) this.btn.classList.remove('playing');
-        });
-    }
-
-    fadeIn() {
-        let vol = 0;
-        const interval = setInterval(() => {
-            vol = Math.min(vol + 4, 40);
-            if (this.player && typeof this.player.setVolume === 'function') {
-                this.player.setVolume(vol);
-            }
-            if (vol >= 40) clearInterval(interval);
-        }, 100);
-    }
-
-    fadeOut(callback) {
-        let vol = this.player && typeof this.player.getVolume === 'function' ? this.player.getVolume() : 40;
-        const interval = setInterval(() => {
-            vol = Math.max(vol - 5, 0);
-            if (this.player && typeof this.player.setVolume === 'function') {
-                this.player.setVolume(vol);
-            }
-            if (vol <= 0) {
-                clearInterval(interval);
-                if (callback) callback();
-            }
-        }, 60);
+        }
     }
 }
 
