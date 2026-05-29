@@ -1,6 +1,5 @@
 /* ==========================================================================
-   MUSIC.JS: CONTROLADOR DE MÚSICA - Iris (Goo Goo Dolls) vía YouTube
-   Autoplay al primer gesto del usuario (requisito del navegador)
+   MUSIC.JS: AUTOPLAY EN PRIMERA INTERACCIÓN DEL USUARIO
    ========================================================================== */
 
 class MusicController {
@@ -8,38 +7,34 @@ class MusicController {
         this.player = null;
         this.isPlaying = false;
         this.isReady = false;
-        this.pendingPlay = false;
+        this.hasStarted = false;
 
         this.init();
     }
 
     init() {
-        // Cargar la API de YouTube de forma dinámica
+        // Cargar la API de YouTube
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
-        const firstScript = document.getElementsByTagName('script')[0];
-        firstScript.parentNode.insertBefore(tag, firstScript);
+        document.head.appendChild(tag);
 
-        // Callback global requerido por YouTube IFrame API
         window.onYouTubeIframeAPIReady = () => this.onAPIReady();
 
-        // Arrancar música al primer gesto del usuario (click, scroll, touch)
-        // Los navegadores modernos exigen esto para reproducir audio
-        const startOnGesture = () => {
-            if (!this.isPlaying) {
-                this.pendingPlay = true;
+        // Iniciar música en la PRIMERA interacción del usuario (click, touch, tecla)
+        const startOnInteraction = () => {
+            if (!this.hasStarted) {
+                this.hasStarted = true;
                 this.play();
+                // Limpiamos los listeners una vez arranca
+                document.removeEventListener('click', startOnInteraction);
+                document.removeEventListener('touchstart', startOnInteraction);
+                document.removeEventListener('keydown', startOnInteraction);
             }
-            document.removeEventListener('click',      startOnGesture);
-            document.removeEventListener('touchstart', startOnGesture);
-            document.removeEventListener('scroll',     startOnGesture);
-            document.removeEventListener('keydown',    startOnGesture);
         };
 
-        document.addEventListener('click',      startOnGesture, { once: true, passive: true });
-        document.addEventListener('touchstart', startOnGesture, { once: true, passive: true });
-        document.addEventListener('scroll',     startOnGesture, { once: true, passive: true });
-        document.addEventListener('keydown',    startOnGesture, { once: true, passive: true });
+        document.addEventListener('click', startOnInteraction, { once: true });
+        document.addEventListener('touchstart', startOnInteraction, { once: true });
+        document.addEventListener('keydown', startOnInteraction, { once: true });
     }
 
     onAPIReady() {
@@ -51,26 +46,19 @@ class MusicController {
         this.player = new YT.Player('yt-player-container', {
             videoId: 'NdYWuo9OFAw',   // Iris - Goo Goo Dolls
             playerVars: {
-                autoplay: 1,
+                autoplay: 0,
                 controls: 0,
                 loop: 1,
                 playlist: 'NdYWuo9OFAw',
                 enablejsapi: 1,
-                origin: window.location.origin,
-                rel: 0,
-                fs: 0
+                origin: window.location.origin
             },
             events: {
                 onReady: () => {
                     this.isReady = true;
                     this.player.setVolume(0);
-                    // Si el usuario ya hizo un gesto antes de que cargara el player
-                    if (this.pendingPlay) {
-                        this.player.playVideo();
-                        this.fadeIn();
-                        this.isPlaying = true;
-                        this.pendingPlay = false;
-                    }
+                    // Si el usuario ya interactuó antes de que el player esté listo
+                    if (this.hasStarted) this.play();
                 },
                 onError: (e) => {
                     console.warn('YouTube player error:', e);
@@ -80,26 +68,21 @@ class MusicController {
     }
 
     play() {
-        if (!this.isReady) {
-            // El player aún no cargó, pendingPlay ya está marcado, se ejecutará en onReady
-            return;
-        }
+        if (!this.isReady) return; // onReady lo activará cuando esté listo
         if (this.isPlaying) return;
+
         this.player.playVideo();
         this.isPlaying = true;
-        this.pendingPlay = false;
         this.fadeIn();
     }
 
     fadeIn() {
         let vol = 0;
         const interval = setInterval(() => {
-            vol = Math.min(vol + 3, 40);
-            if (this.player && typeof this.player.setVolume === 'function') {
-                this.player.setVolume(vol);
-            }
+            vol = Math.min(vol + 4, 40);
+            this.player.setVolume(vol);
             if (vol >= 40) clearInterval(interval);
-        }, 150);
+        }, 100);
     }
 }
 

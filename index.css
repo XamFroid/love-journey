@@ -99,23 +99,7 @@ body {
 
 /* 3. BOTÓN DE MÚSICA FLOTANTE */
 .music-controller {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 100;
-    background: rgba(25, 15, 38, 0.75);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 117, 140, 0.3);
-    border-radius: 50px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3), 0 0 10px rgba(255, 117, 140, 0.1);
-    transition: var(--transition-smooth);
-    user-select: none;
+    display: none;
 }
 
 .music-controller:hover {
@@ -270,6 +254,14 @@ body {
     text-align: justify;
     opacity: 0;
     animation: fadeSlideUp 1.2s ease forwards 0.8s;
+}
+
+/* En móvil el texto centrado queda mejor */
+@media (max-width: 600px) {
+    .hero-subtitle {
+        text-align: center;
+        max-width: 90vw;
+    }
 }
 
 .hero-heart-line {
@@ -1312,13 +1304,6 @@ section {
     /* Ajustes Globales de Padding */
     section {
         padding: 5rem 1.5rem;
-    }
-    
-    .hero-subtitle {
-        text-align: center;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
     }
     
     .section-header {
