@@ -199,26 +199,12 @@ body {
 }
 
 .hero-content {
-    max-width: 640px;
+    max-width: 720px;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.4rem;
-    padding: 2rem 1rem;
-}
-
-/* Animación base para todos los elementos del hero */
-.hero-badge,
-.hero-title,
-.hero-divider,
-.hero-intro,
-.hero-body,
-.counter-container,
-.btn-primary {
-    opacity: 0;
-    animation: fadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: var(--d, 0s);
+    gap: 1.6rem;
 }
 
 /* Badge ♥ MAX & TESS */
@@ -227,111 +213,64 @@ body {
     align-items: center;
     gap: 8px;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 5px;
     text-transform: uppercase;
-    color: rgba(255, 200, 210, 0.8);
-    margin-bottom: -0.4rem;
+    color: rgba(255, 200, 210, 0.9);
+    opacity: 0;
+    animation: fadeSlideUp 1s ease forwards 0.3s;
 }
 
 .badge-heart {
     color: var(--primary);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     animation: heartbeat 2s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.3); }
+    50% { transform: scale(1.25); }
 }
 
-/* Título Principal */
+/* Título Principal - Playfair Display grande */
 .hero-title {
     font-family: var(--font-fancy);
-    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
     font-weight: 700;
     color: var(--white-warm);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-    text-shadow: 0 0 40px rgba(232, 96, 122, 0.25);
-    margin-bottom: -0.2rem;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    text-shadow:
+        0 0 40px rgba(232, 96, 122, 0.3),
+        0 0 80px rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    animation: fadeSlideUp 1.2s ease forwards 0.5s;
 }
 
 .hero-title em {
     font-style: italic;
-    color: rgba(255, 185, 205, 0.95);
+    color: rgba(255, 200, 215, 0.95);
 }
-
-/* Línea separadora sutil */
-.hero-divider {
-    width: 40px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(232, 96, 122, 0.6), transparent);
-    margin: 0.2rem 0;
-}
-
-/* 30 días contigo / y el mundo ya se siente distinto */
-.hero-intro {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: rgba(255, 210, 220, 0.9);
-    line-height: 1.7;
-    text-align: center;
-    font-weight: 300;
-    margin-bottom: -0.3rem;
-}
-
-.hero-intro strong {
-    font-family: var(--font-fancy);
-    font-weight: 700;
-    font-size: clamp(1.1rem, 2.8vw, 1.4rem);
-    color: var(--white-warm);
-    display: block;
-    margin-bottom: 0.15rem;
-}
-
-/* Párrafos de cuerpo */
-.hero-body {
-    font-size: clamp(0.82rem, 1.8vw, 0.95rem);
-    color: rgba(255, 210, 220, 0.5);
-    font-weight: 300;
-    line-height: 1.85;
-    max-width: 440px;
-    text-align: center;
-}
-
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    color: var(--white-mute);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(255, 225, 232, 0.7);
     font-weight: 300;
-    line-height: 1.8;
-    max-width: 520px;
+    line-height: 2;
+    max-width: 480px;
+    text-align: center;
     opacity: 0;
     animation: fadeSlideUp 1.2s ease forwards 0.8s;
 }
 
-.hero-lead {
-    font-family: var(--font-fancy);
-    font-size: clamp(1.3rem, 3vw, 1.7rem);
-    font-weight: 700;
-    color: var(--white-warm);
-    letter-spacing: 0.5px;
+.hero-heart-line {
+    display: inline-block;
+    margin-top: 0.4rem;
+    color: rgba(255, 200, 215, 0.9);
+    font-style: italic;
+    font-size: 1.05em;
 }
-
-.hero-body {
-    font-size: clamp(0.88rem, 2vw, 1rem);
-    color: rgba(255, 225, 232, 0.6);
-    font-weight: 300;
-    line-height: 1.9;
-    max-width: 500px;
-    text-align: center;
-    opacity: 0;
-    animation: fadeSlideUp 1.2s ease forwards 0.9s;
-}
-
-.br-desktop { display: none; }
-@media (min-width: 640px) { .br-desktop { display: inline; } }
 
 
 @keyframes fadeSlideUp {
