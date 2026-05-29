@@ -1,0 +1,10 @@
+# Logs y archivos de sistema
+*.log
+*.DS_Store
+Thumbs.db
+
+# Dependencias (no hay node_modules aquí pero por si acaso)
+node_modules/
+
+# Variables de entorno
+.env

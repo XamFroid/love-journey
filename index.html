@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia • Tess & Max</title>
+    
+    <!-- Meta SEO y Redes Sociales -->
+    <meta name="description" content="Un viaje mágico a través de la historia de amor de Tess y Max. Un mes de risas, complicidad y sueños juntos.">
+    <meta property="og:title" content="Nuestra Historia • Tess & Max">
+    <meta property="og:description" content="Un viaje mágico a través de nuestro primer mes juntos.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Outfit:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Principales -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Canvas de Partículas Globales (Fondo Mágico) -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- Botón de Música Flotante Premium -->
+    <div class="music-controller" id="music-btn" title="Activar/Desactivar Música">
+        <div class="music-wave">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <span class="music-text">Música</span>
+    </div>
+
+    <!-- 1. HERO PRINCIPAL -->
+    <header class="hero-section" id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade">Tess & Max</h1>
+            <p class="hero-subtitle animate-fade-delay">Un viaje por el universo que creamos juntos</p>
+            
+            <!-- Contador de Aniversario Glassmorphism -->
+            <div class="counter-container glass-card">
+                <div class="counter-header">Llevamos amándonos</div>
+                <div class="counter-grid">
+                    <div class="counter-item">
+                        <span class="counter-val" id="days">00</span>
+                        <span class="counter-lbl">Días</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-val" id="hours">00</span>
+                        <span class="counter-lbl">Horas</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-val" id="minutes">00</span>
+                        <span class="counter-lbl">Min</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-val" id="seconds">00</span>
+                        <span class="counter-lbl">Seg</span>
+                    </div>
+                </div>
+                <div class="counter-footer">y latiendo al mismo ritmo ❤️</div>
+            </div>
+            
+            <a href="#timeline-sec" class="btn-primary" id="btn-start">
+                <span>Comenzar nuestra historia</span>
+                <svg class="arrow-down" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. NUESTRA HISTORIA (Línea de Tiempo) -->
+    <section class="timeline-section" id="timeline-sec">
+        <div class="section-header">
+            <span class="section-tag">El Principio</span>
+            <h2>Nuestra Cronología</h2>
+            <p>Los momentos que encendieron nuestra chispa</p>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <!-- Hito 1 -->
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">30/04/2026</span>
+                    <h3>Iniciamos nuestra relación</h3>
+                    <p>A las 8:00 p.m. del 30 de abril de 2026, decidimos entrelazar nuestros caminos y comenzar este viaje tan bonito y lleno de ilusiones.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 2 -->
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">01/05/2026</span>
+                    <h3>Primer encuentro con tu Mami</h3>
+                    <p>Hablé por primera vez con tu mamá. Sentí los nervios más bonitos de saber que entraba a formar parte de tu vida y a conocer el amoroso hogar del que provienes.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 3 -->
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">04/05/2026</span>
+                    <h3>Nuestra primera foto juntos</h3>
+                    <p>Capturamos nuestra primera foto de pareja, aquella en la que se refleja la magia en nuestros ojos y el amor que comenzaba a brotar.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 4 -->
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">07/05/2026</span>
+                    <h3>Primera salida a comer & Conociendo a tu Papá</h3>
+                    <p>Tuvimos nuestra primera salida a comer formal. Además, en este día tan especial tuve el honor de conocer a tu papá, compartiendo un momento inolvidable que guardo con mucho cariño.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 5 -->
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">08/05/2026</span>
+                    <h3>Nuestro primer baile</h3>
+                    <p>Bailamos juntos por el Día de la Madre en el Club Grau. Sentir el ritmo de la música y abrazarte fue un instante mágico que se grabó para siempre en mi alma.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 6 -->
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">09/05/2026</span>
+                    <h3>Comida en Familia</h3>
+                    <p>Nuestra primera salida a comer compartida entre tus papis, tú y yo. Un momento lleno de risas, historias y complicidad familiar muy bonita.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 7 -->
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">15/05/2026</span>
+                    <h3>Comida Selvática con tu Mami</h3>
+                    <p>Fuimos a comer comida selvática acompañados de tu mami. Una tarde diferente compartiendo platos deliciosos y conociéndola más.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 8 -->
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">16/05/2026</span>
+                    <h3>El dilema de las hamburguesas</h3>
+                    <p>Nuestra segunda salida a comer, cuando de manera muy graciosa nos quisieron dar una orden doble de hamburguesas.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 9 -->
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">20/05/2026</span>
+                    <h3>Conferencia de la UPAO</h3>
+                    <p>Te acompañé a la conferencia en la UPAO, donde aproveché para mostrarte y enseñarte las carreras de la universidad.</p>
+                </div>
+            </div>
+            
+            <!-- Hito 10 -->
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-wrapper glass-card">
+                    <span class="timeline-date">30/05/2026</span>
+                    <h3>Nuestro primer mes juntos</h3>
+                    <p>Cumplimos nuestro primer mes de novios. 30 días de elegirnos, de cuidarnos, de aprender y de soñar en grande. ¡El bellísimo inicio de todo nuestro futuro!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. GALERÍA EMOCIONAL -->
+    <section class="gallery-section" id="gallery-sec">
+        <div class="section-header">
+            <span class="section-tag">Instantes Guardados</span>
+            <h2>Galería de Recuerdos</h2>
+            <p>Fragmentos de nuestra felicidad capturados en el tiempo</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item glass-card card-tall" data-caption="Tu luz brilla sin esforzarse. Cada segundo contigo es magia.">
+                <img src="assets/tess_sky.jpg" alt="Tess bajo el cielo">
+                <div class="gallery-overlay">
+                    <span>Tu Luz</span>
+                </div>
+            </div>
+            <div class="gallery-item glass-card card-wide" data-caption="Esos domingos lentos, abrazos cálidos y risas compartidas.">
+                <img src="assets/cozy_moments.jpg" alt="Momentos acogedores">
+                <div class="gallery-overlay">
+                    <span>Calidez</span>
+                </div>
+            </div>
+            <div class="gallery-item glass-card" data-caption="Entrar a tu mundo sin requisitos ha sido el mejor regalo.">
+                <img src="assets/hands_holding.jpg" alt="Manos unidas">
+                <div class="gallery-overlay">
+                    <span>Complicidad</span>
+                </div>
+            </div>
+            <div class="gallery-item glass-card" data-caption="Los besos, las risas espontáneas y los planes por cumplir.">
+                <img src="assets/sweet_details.jpg" alt="Detalles dulces">
+                <div class="gallery-overlay">
+                    <span>Magia</span>
+                </div>
+            </div>
+            <div class="gallery-item glass-card card-tall" data-caption="Nuestras mascotas virtuales y risas tontas de madrugada.">
+                <img src="assets/playful_love.jpg" alt="Amor y diversión">
+                <div class="gallery-overlay">
+                    <span>Nuestra Diversión</span>
+                </div>
+            </div>
+            <div class="gallery-item glass-card card-wide" data-caption="Tu aroma impregnado en mi ropa y mi corazón lleno de ti.">
+                <img src="assets/sunset_walk.jpg" alt="Paseo al atardecer">
+                <div class="gallery-overlay">
+                    <span>El Atardecer Juntos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CARTAS Y MENSAJES (SOBRE 3D) -->
+    <section class="letters-section" id="letters-sec">
+        <div class="section-header">
+            <span class="section-tag">De Mí Para Ti</span>
+            <h2>La Carta de Mi Alma</h2>
+            <p>Haz clic en el sobre mágico para leer lo que llevo dentro</p>
+        </div>
+        
+        <div class="envelope-wrapper">
+            <div class="envelope" id="love-envelope">
+                <div class="envelope-back"></div>
+                <div class="paper" id="love-paper">
+                    <div class="paper-content">
+                        <h4 class="paper-title">Mi Tassie,</h4>
+                        <div class="paper-text" id="typewriter-text">
+                            <!-- Se inyectará con efecto máquina de escribir -->
+                        </div>
+                        <p class="paper-signature">— Tuyo, siempre. <br><span class="signature-highlight">Tu Viejito ❤️</span></p>
+                    </div>
+                </div>
+                <div class="envelope-front"></div>
+                <div class="envelope-top" id="envelope-flap"></div>
+                <div class="heart-seal" id="heart-seal">❤️</div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- 5. RAZONES POR LAS QUE TE AMO -->
+    <section class="reasons-section" id="reasons-sec">
+        <div class="section-header">
+            <span class="section-tag">Detalles de Ti</span>
+            <h2>Por Qué Te Amo</h2>
+            <p>Pequeñas cosas tuyas que hacen gigante mi mundo (Pasa el cursor o tócalas)</p>
+        </div>
+        <div class="reasons-grid">
+            <!-- Razón 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card">
+                        <div class="card-glow"></div>
+                        <div class="reason-icon">🌸</div>
+                        <h3>Tus Detalles</h3>
+                    </div>
+                    <div class="flip-card-back glass-card">
+                        <p>La magia con la que transformas cualquier día ordinario en algo extraordinario con un solo mensaje de buenos días o una palabra dulce de aliento.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Razón 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card">
+                        <div class="card-glow"></div>
+                        <div class="reason-icon">✨</div>
+                        <h3>Tu Paz</h3>
+                    </div>
+                    <div class="flip-card-back glass-card">
+                        <p>Esa serenidad única que me transmites al estar juntos. Me haces sentir que, sin importar el ruido de afuera, a tu lado todo estará bien.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Razón 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card">
+                        <div class="card-glow"></div>
+                        <div class="reason-icon">💫</div>
+                        <h3>Tus Risas</h3>
+                    </div>
+                    <div class="flip-card-back glass-card">
+                        <p>Tu sentido del humor tan cómplice y nuestras bromas internas. Tu risa cristalina es mi melodía preferida en el mundo entero.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Razón 4 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card">
+                        <div class="card-glow"></div>
+                        <div class="reason-icon">💡</div>
+                        <h3>Tu Brillo</h3>
+                    </div>
+                    <div class="flip-card-back glass-card">
+                        <p>Verte apasionada y dedicada a tu camino profesional. Admiro profundamente tu entrega, tu inteligencia y lo mucho que inspiras a todos.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Razón 5 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card">
+                        <div class="card-glow"></div>
+                        <div class="reason-icon">🧸</div>
+                        <h3>Tu Ternura</h3>
+                    </div>
+                    <div class="flip-card-back glass-card">
+                        <p>Tus gestos de cariño más puros, cómo me escuchas con atención sincera y la manera tan tuya de mirarme como tu refugio predilecto.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Razón 6 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card">
+                        <div class="card-glow"></div>
+                        <div class="reason-icon">💌</div>
+                        <h3>Tu Apoyo</h3>
+                    </div>
+                    <div class="flip-card-back glass-card">
+                        <p>Ser mi compañera en cada idea divertida, soñar despierta conmigo y construir un futuro donde caben todos nuestros planes juntos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 7. PLAYLIST ROMÁNTICA -->
+    <section class="playlist-section" id="playlist-sec">
+        <div class="section-header">
+            <span class="section-tag">Nuestra Banda Sonora</span>
+            <h2>Nuestras Canciones</h2>
+            <p>Un poquito de lo que siento cada vez que te veo.</p>
+        </div>
+        <div class="playlist-container-centered">
+            <!-- Spotify Embed Premium -->
+            <div class="spotify-wrapper glass-card">
+                <iframe src="https://open.spotify.com/embed/playlist/404Hp3bgx96TF8zCwwSYQR?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FINAL CINEMATOGRÁFICO -->
+    <footer class="cinema-footer" id="ending">
+        <div class="footer-overlay"></div>
+        <div class="footer-content">
+            <div class="footer-heart">❤️</div>
+            <h2 class="footer-thanks">Gracias por existir en mi vida, Tess.</h2>
+            <p class="footer-sub">Eres mi universo entero, mi lugar seguro, mi Tassie.</p>
+            <p class="footer-signature">Con todo el amor de tu viejito, Max.</p>
+            
+            <button class="btn-secondary" id="btn-restart">
+                <span>Revivir Nuestro Viaje</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX PARA LA GALERÍA -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Zoom de recuerdo">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <!-- Scripts de la Aplicación -->
+    <script src="particles.js"></script>
+    <script src="countdown.js"></script>
+    <script src="music.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
